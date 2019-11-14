@@ -55,9 +55,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        $data = $product;
+        $data = Product::find($id);
+
+        if (is_null($data)) {
+            return response()->json(null, 404);
+        }
+
         return response()->json($data, 200);
     }
 
@@ -79,9 +84,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $data = $product;
+        $data = Product::find($id);
+
+        if (is_null($data)) {
+            return response()->json(null, 404);
+        }
+
         $data->title = $request->get('title');
         $data->price = $request->get('price');
         $data->desc = $request->get('desc');
@@ -100,9 +110,16 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $product->delete();
+        $data = Product::find($id);
+
+        if (is_null($data)) {
+            return response()->json(null, 404);
+        }
+
+        $data->delete();
+
         return response()->json([
             'message' => 'success'
         ], 200);

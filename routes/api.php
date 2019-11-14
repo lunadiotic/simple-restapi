@@ -19,9 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('product', 'ProductController@index');
 Route::post('product', 'ProductController@store');
-Route::get('product/{product}', 'ProductController@show');
-Route::put('product/{product}', 'ProductController@update');
-Route::delete('product/{product}', 'ProductController@destroy');
+Route::get('product/{id}', 'ProductController@show');
+Route::put('product/{id}', 'ProductController@update');
+Route::delete('product/{id}', 'ProductController@destroy');
 
 
 // Route::resource('product', 'ProductController')->except([
