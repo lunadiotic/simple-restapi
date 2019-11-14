@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product as AppProduct;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::all();
+        $data = Product::get();
         return response()->json($data, 200);
     }
 
@@ -74,7 +75,8 @@ class ProductController extends Controller
             return response()->json(null, 404);
         }
 
-        return response()->json($data, 200);
+        $response = new AppProduct($data);
+        return response()->json($response, 200);
     }
 
     /**
