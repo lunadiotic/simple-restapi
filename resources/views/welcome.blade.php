@@ -82,6 +82,9 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    <form action="" method="post">
+                        @method('PUT')
+                    </form>
                 </div>
 
                 <div class="links">
